@@ -1,12 +1,17 @@
 package org.ansj.domain;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import org.ansj.util.MathUtil;
 import org.nlpcn.commons.lang.util.StringUtil;
 
-public class Term implements Comparable<Term> {
+public class Term implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// 当前词
 	private String name;
 	//
@@ -181,16 +186,6 @@ public class Term implements Comparable<Term> {
 		return termNatures;
 	}
 
-	@Override
-	public int compareTo(Term o) {
-		// TODO Auto-generated method stub
-		if (this.score > o.score) {
-			return 0;
-		} else {
-			return 1;
-		}
-	}
-
 	public void setNature(Nature nature) {
 		this.nature = nature;
 	}
@@ -211,7 +206,7 @@ public class Term implements Comparable<Term> {
 	@Override
 	public String toString() {
 		if ("null".equals(nature.natureStr)) {
-			return name;
+			return this.getRealName();
 		}
 		return this.getRealName() + "/" + nature.natureStr;
 	}
